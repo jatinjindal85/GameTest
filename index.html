@@ -10,9 +10,32 @@
 </head>
 <body>
 
-	<div class="well">Hello</div>
+	<h2><center>GamePool</center></h2>
 
-	<div ng-controller="NavCtrl" class="well">
+	<div ng-controller="PostCtrl" class="well">
+		<h4>Post new game</h4>
+		<input type="text" name="newGameName" ng-model="newGame.name"></input>
+		<br/><br/>Upload image<input type="file" name="newGameImage" class="btn btn-primary"></input>
+		<hr/><button ng-click="">Post</button>
+	</div>
+	<br/>
+
+	<div ng-controller="GetCtrl">
+		<h4>Games available near me</h4>
+		<div ng-repeat="game in games | orderBy : distance">
+			<div class="well">
+				<img ng-src="{{game.image}}" width="80" height="120" />
+				<h5>{{game.name}}</h5>
+				<p>({{game.distance}} miles away) Posted 2 days ago</p>
+				<button class="btn btn-default">Contact {{game.owner}}</button>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<hr/>
+	<!-- div ng-controller="NavCtrl" class="well">
 		
 		Slide: {{slide}}
 		<br/>
@@ -30,7 +53,7 @@
 			<button class="btn pull-left" ng-click="setSlide(2)">Back</button>
 			<div class="clearfix"></div>
 		</div>
-	</div>
+	</div -->
 
 	
 
