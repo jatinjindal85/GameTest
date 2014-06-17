@@ -9,7 +9,6 @@ app.controller('GetCtrl', function($scope){
 		{name:'Prince of Persia', image:'image3.jpg', owner:'Crazy', distance:'0.5'},
 		{name:'Midtown Madness', image:'image4.jpg', owner:'John', distance:'7'}
 	];
-
 });
 
 app.controller('PostCtrl', function($scope){

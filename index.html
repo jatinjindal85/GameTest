@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<h2><center>GamePool</center></h2>
+	<h2><center>Game<b>Pool</b></center></h2>
 
 	<div ng-controller="PostCtrl" class="well">
 		<h4>Post new game</h4>
@@ -22,12 +22,22 @@
 
 	<div ng-controller="GetCtrl">
 		<h4>Games available near me</h4>
-		<div ng-repeat="game in games | orderBy : distance">
-			<div class="well">
-				<img ng-src="{{game.image}}" width="80" height="120" />
-				<h5>{{game.name}}</h5>
-				<p>({{game.distance}} miles away) Posted 2 days ago</p>
-				<button class="btn btn-default">Contact {{game.owner}}</button>
+		Search Filter <input type="text" ng-model="getQuery" ></input>
+		<br/><br/>
+		<div class="row">
+			<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<img ng-src="{{game.image}}" width="80" height="120" />
+						<div class="caption">
+							<h5>{{game.name}}</h5>
+							<p>({{game.distance}} miles away) Posted 2 days ago</p>
+							<p>
+								<button class="btn btn-default">Contact {{game.owner}}</button>
+							</p>
+						</div>
+				    </div>
+				</div>
 			</div>
 		</div>
 	</div>
