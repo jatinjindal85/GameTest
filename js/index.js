@@ -12,7 +12,20 @@ app.controller('GetCtrl', function($scope){
 });
 
 app.controller('PostCtrl', function($scope){
-	$scope.newGame = {name:'Name', image:'default.jpg'};
+
+	$scope.games = [
+		{name:'Age Of Empires', image:'image1.png', owner:'John', distance:'1.5'},
+		{name:'Roller Coaster Tycoon', image:'image2.png', owner:'Alex', distance:'2.5'},
+		{name:'Prince of Persia', image:'image3.jpg', owner:'Crazy', distance:'0.5'},
+		{name:'Midtown Madness', image:'image4.jpg', owner:'John', distance:'7'}
+	];
+
+	$scope.addGame = function(){
+		$scope.games.push({name:$scope.newGameName, image:$scope.newGamePic, owner:'Gulla', distance:'2.2'});
+		$scope.newGameName = '';
+	};
+
+	//$scope.newGame = {name:'Name', image:'default.jpg'};
 });
 
 
