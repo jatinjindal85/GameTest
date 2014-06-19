@@ -6,6 +6,9 @@ app.controller('NavCtrl', function($scope){
 	$scope.setTab = function(tabName){
 		$scope.tab = tabName;
 	}
+	$scope.$on('setTabInNavCtrl', function(event, args) {
+		$scope.setTab(args.tabName);
+	});
 });
 
 
@@ -32,9 +35,9 @@ app.controller('PostedCtrl', function($scope){
 		{name:'Prince of Persia', image:'image2.png', location:'Sunnyvale, CA', views:'5', requests:'1'}
 	];
 	$scope.addGame = function(){
-		alert("Adding game.");
 		$scope.games.push({name:$scope.newGameName, image:$scope.newGamePic, location:'Sunnyvale, CA', views:'0', requests:'0'});
 		$scope.newGameName = '';
+		$scope.$emit('setTabInNavCtrl', {tabName:'posted'});
 	};
 });
 
@@ -51,11 +54,3 @@ app.controller('RentedCtrl', function($scope){
 
 
 
-
-/*app.controller('NavCtrl', function($scope){
-	$scope.slide = 1;
-	$scope.setSlide = function(slideNum){
-		$scope.slide = slideNum;
-	}
-});
-*/
