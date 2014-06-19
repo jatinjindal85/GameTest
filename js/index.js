@@ -1,15 +1,36 @@
 
 var app = angular.module('Zipcar', []);
 
+/*
+app.factory('mySharedService', function($rootScope) {
+    var sharedService = {};
+
+    sharedService.getQuery = '';
+
+    sharedService.prepForBroadcast = function(msg) {
+        this.getQuery = msg;
+        this.broadcastItem();
+    };
+
+    sharedService.broadcastItem = function() {
+        $rootScope.$broadcast('handleBroadcast');
+    };
+
+    return sharedService;
+}); */
+
 app.controller('NavCtrl', function($scope){
 	$scope.tab = 'find';
 	$scope.setTab = function(tabName){
 		$scope.tab = tabName;
 	}
+	$scope.$on('setTabInNavCtrl', function(event, args) {
+		$scope.setTab(args.tabName);
+	});
 });
 
 
-app.controller('FindCtrl', function($scope){
+app.controller('FindCtrl', function($scope, $rootScope){
 	$scope.games = [
 		{name:'Age Of Empires', image:'image1.png', owner:'John', distance:'1.5'},
 		{name:'Roller Coaster Tycoon', image:'image2.png', owner:'Alex', distance:'2.5'},
@@ -19,9 +40,11 @@ app.controller('FindCtrl', function($scope){
 	$scope.getResultsCount = function(){
 		return $scope.games.length;
 	};
-	$scope.requestGame = function(){
-		alert("Requesting game.");
-		//$scope.games.push({name:$scope.newGameName, image:$scope.newGamePic, owner:'Gulla', distance:'2.2'});
+	$scope.requestGame = function(game){
+		//alert("Requesting game." + game.name + game.owner);
+		$rootScope.name=game;
+		//sharedService.prepForBroadcast(game);
+		$scope.games.push({name:game.name, image:game.image, owner:game.owner, distance:game.distance});
 		//$scope.newGameName = '';
 	};
 });
@@ -32,30 +55,25 @@ app.controller('PostedCtrl', function($scope){
 		{name:'Prince of Persia', image:'image2.png', location:'Sunnyvale, CA', views:'5', requests:'1'}
 	];
 	$scope.addGame = function(){
-		alert("Adding game.");
 		$scope.games.push({name:$scope.newGameName, image:$scope.newGamePic, location:'Sunnyvale, CA', views:'0', requests:'0'});
 		$scope.newGameName = '';
+		$scope.$emit('setTabInNavCtrl', {tabName:'posted'});
 	};
 });
 
-app.controller('RentedCtrl', function($scope){
+app.controller('RentedCtrl', function($scope, $rootScope){
 	$scope.rentedtab = 'owned';
-	$scope.setRentedTab = function(rentedTabName){
-		$scope.rentedtab = rentedTabName;
-	}
-	$scope.games = [
+	$scope.borrowedGames = [
 		{name:'Age Of Empires', image:'image1.png', location:'Sunnyvale, CA', views:'2', requests:'0'},
 		{name:'Prince of Persia', image:'image2.png', location:'Sunnyvale, CA', views:'5', requests:'1'}
 	];
+	$scope.setRentedTab = function(rentedTabName){
+		//alert("Rented Tab. " + $rootScope.name.owner);
+		$scope.rentedtab = rentedTabName;
+		$scope.borrowedGames.push({name:$rootScope.name.name, image:$rootScope.name.image, 
+									location:'Mountain View, CA', views:'2', requests:'0'});
+	};
 });
 
 
 
-
-/*app.controller('NavCtrl', function($scope){
-	$scope.slide = 1;
-	$scope.setSlide = function(slideNum){
-		$scope.slide = slideNum;
-	}
-});
-*/

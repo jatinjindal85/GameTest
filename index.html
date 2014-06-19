@@ -44,7 +44,7 @@
 						</div>
 						<div class="list-group">
 							<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
-								<a href="#" class="list-group-item" ng-click="requestGame()">
+								<a href="#" class="list-group-item" ng-click="requestGame(game)">
 									<div class="row">
 										<div class="col-md-4 col-sm-4 col-xs-4">
 											<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
