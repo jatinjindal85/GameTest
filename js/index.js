@@ -44,7 +44,8 @@ app.controller('FindCtrl', function($scope, $rootScope){
 		//alert("Requesting game." + game.name + game.owner);
 		$rootScope.name=game;
 		//sharedService.prepForBroadcast(game);
-		$scope.games.push({name:game.name, image:game.image, owner:game.owner, distance:game.distance});
+		//$scope.games.push({name:game.name, image:game.image, owner:game.owner, distance:game.distance});
+		alert(game.name + " is rented, Check your borrowed games.");
 		//$scope.newGameName = '';
 	};
 });
