@@ -10,174 +10,178 @@
 </head>
 <body>
 
-	<h3><center>Game<b>Pool</b></center></h3>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
 
-	<div ng-controller="NavCtrl">
+			<h3><center>Game<b>Pool</b></center></h3>
 
-		<div class="btn-group btn-group-justified">
-			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='find'}" ng-click="setTab('find')">Find</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='posted'}" ng-click="setTab('posted')">Posted</button>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='rented'}" ng-click="setTab('rented')">Rented</button>
-			</div>
-		</div>
-		
+			<div ng-controller="NavCtrl">
 
-		<div ng-show="tab=='find'">
-			<div ng-controller="FindCtrl">
-				<div class="well">
-					<h5>Available near me</h5>
-					<br>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" ng-model="getQuery">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Search</button>
-						</span>
-					</div>
-				</div>
-				<div class="list-group">
-					<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
-						<a href="#" class="list-group-item" ng-click="requestGame()">
-							<div class="row">
-								<div class="col-md-4 col-sm-4 col-xs-4">
-									<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
-								</div>
-								<div class="col-md-8 col-sm-8 col-xs-8">
-									<h5 class="list-group-item-heading">{{game.name}}</h5>
-									<div class="list-group-item-text">
-										<p class="text-muted text-justify">
-											{{game.distance}} miles | 2 days ago
-											<br>by {{game.owner}}
-											<span class="glyphicon glyphicon-star"></span>
-											<span class="glyphicon glyphicon-star"></span>
-											<span class="glyphicon glyphicon-star"></span>
-											<span class="glyphicon glyphicon-star"></span>
-											<span class="glyphicon glyphicon-star-empty"></span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<br>
-				<p class="text-muted text-center">End of results</p>
-				<br>
-			</div>
-		</div>
-
-		<div ng-show="tab=='posted'">
-			<div ng-controller="PostedCtrl">
-				<div class="well">
-					<h5>Posted by me</h5>
-					<br>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search" ng-model="getQuery">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Search</button>
-						</span>
-					</div>
-					<br/>
-					<div class="btn-group btn-block">
-						<button class="btn btn-success btn-block" data-toggle="collapse" data-target="#newGameDiv">
-							Post New Game <span class="glyphicon glyphicon-circle-arrow-down"></span> 
-						</button>
-					</div>
-					<div class="clearfix"></div>
-					<div id="newGameDiv" class="collapse alert alert-success">
-						<h5>Post new game</h5>
-						<input type="text" class="form-control input-lg input-block" placeholder="Title" name="newGameName" ng-model="newGameName"></input>
-						<br><br>Upload image
-						<input type="file" name="newGameImage" class="form-control" ng-model="newGamePic"></input>
-						<hr>
-						<button class="btn btn-default btn-lg pull-right" ng-click="addGame()">Post</button>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-					<div class="list-group">
-						<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
-							<a href="#" class="list-group-item" ng-click="requestGame()">
-								<div class="row">
-									<div class="col-md-4 col-sm-4 col-xs-4">
-										<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
-									</div>
-									<div class="col-md-8 col-sm-8 col-xs-8">
-										<h5 class="list-group-item-heading">{{game.name}}</h5>
-										<div class="list-group-item-text">
-											<p class="text-muted text-justify">
-												{{game.distance}} miles | 2 days ago
-												<br>by {{game.owner}}
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star"></span>
-												<span class="glyphicon glyphicon-star-empty"></span>
-											</p>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				<br>
-				<p class="text-muted text-center">End of results</p>
-				<br>
-			</div>
-		</div>
-
-		<div ng-show="tab=='rented'">
-			<div ng-controller="RentedCtrl">
 				<div class="btn-group btn-group-justified">
 					<div class="btn-group">
-						<button type="button" class="btn btn-success btn-lg" ng-class="{active: rentedtab=='owned'}" ng-click="setRentedTab('owned')">Owned</button>
+						<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='find'}" ng-click="setTab('find')">Find</button>
 					</div>
 					<div class="btn-group">
-						<button type="button" class="btn btn-success btn-lg" ng-class="{active: rentedtab=='borrowed'}" ng-click="setRentedTab('borrowed')">Borrowed</button>
+						<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='posted'}" ng-click="setTab('posted')">Posted</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-lg" ng-class="{active: tab=='rented'}" ng-click="setTab('rented')">Rented</button>
 					</div>
 				</div>
-				<br>
-				<div ng-show="rentedtab=='owned'">
-					<h4>Games I rented out</h4>
+				
+
+				<div ng-show="tab=='find'">
+					<div ng-controller="FindCtrl">
+						<div class="well">
+							<h5>Available near me</h5>
+							<br>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" ng-model="getQuery">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">Search</button>
+								</span>
+							</div>
+						</div>
+						<div class="list-group">
+							<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
+								<a href="#" class="list-group-item" ng-click="requestGame()">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-4">
+											<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<h5 class="list-group-item-heading">{{game.name}}</h5>
+											<div class="list-group-item-text">
+												<p class="text-muted text-justify">
+													{{game.distance}} miles | 2 days ago
+													<br>by {{game.owner}}
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star-empty"></span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<br>
+						<p class="text-muted text-center">End of results</p>
+						<br>
+					</div>
 				</div>
-				<div ng-show="rentedtab=='borrowed'">
-					<h4>Games I borrowed</h4>
+
+				<div ng-show="tab=='posted'">
+					<div ng-controller="PostedCtrl">
+						<div class="well">
+							<h5>Posted by me</h5>
+							<br>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" ng-model="getQuery">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">Search</button>
+								</span>
+							</div>
+							<br/>
+							<div class="btn-group btn-block">
+								<button class="btn btn-success btn-block" data-toggle="collapse" data-target="#newGameDiv">
+									Post New Game <span class="glyphicon glyphicon-circle-arrow-down"></span> 
+								</button>
+							</div>
+							<div class="clearfix"></div>
+							<div id="newGameDiv" class="collapse alert alert-success">
+								<h5>Post new game</h5>
+								<input type="text" class="form-control input-lg input-block" placeholder="Title" name="newGameName" ng-model="newGameName"></input>
+								<br><br>Upload image
+								<input type="file" name="newGameImage" class="form-control" ng-model="newGamePic"></input>
+								<hr>
+								<button class="btn btn-default btn-lg pull-right" ng-click="addGame()">Post</button>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div class="list-group">
+							<div ng-repeat="game in games | filter: getQuery | orderBy : distance">
+								<a href="#" class="list-group-item" ng-click="requestGame()">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-4">
+											<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<h5 class="list-group-item-heading">{{game.name}}</h5>
+											<div class="list-group-item-text">
+												<p class="text-muted text-justify">
+													{{game.distance}} miles | 2 days ago
+													<br>by {{game.owner}}
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star-empty"></span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<br>
+						<p class="text-muted text-center">End of results</p>
+						<br>
+					</div>
 				</div>
+
+				<div ng-show="tab=='rented'">
+					<div ng-controller="RentedCtrl">
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-lg" ng-class="{active: rentedtab=='owned'}" ng-click="setRentedTab('owned')">Owned</button>
+							</div>
+							<div class="btn-group">
+								<button type="button" class="btn btn-success btn-lg" ng-class="{active: rentedtab=='borrowed'}" ng-click="setRentedTab('borrowed')">Borrowed</button>
+							</div>
+						</div>
+						<br>
+						<div ng-show="rentedtab=='owned'">
+							<h4>Games I rented out</h4>
+						</div>
+						<div ng-show="rentedtab=='borrowed'">
+							<h4>Games I borrowed</h4>
+						</div>
+					</div>
+				</div>
+
+
 			</div>
+
+			<br/>
+
+
+
+
+			<!-- div ng-controller="NavCtrl" class="well">
+				
+				Slide: {{slide}}
+				<br/>
+				<div class="well" ng-show="slide == 1">
+					1<br/>
+					<button class="btn pull-right" ng-click="setSlide(2)">Next</button>
+					<div class="clearfix"></div>
+				</div>
+				<div class="well" ng-show="slide == 2">2<br/>
+					<button class="btn pull-left" ng-click="setSlide(1)">Back</button>
+					<button class="btn pull-right" ng-click="setSlide(3)">Next</button>
+					<div class="clearfix"></div>
+				</div>
+				<div class="well" ng-show="slide == 3">3<br/>
+					<button class="btn pull-left" ng-click="setSlide(2)">Back</button>
+					<div class="clearfix"></div>
+				</div>
+			</div -->
+
 		</div>
-
-
-	</div>
-
-	<br/>
-
-
-
-
-	<!-- div ng-controller="NavCtrl" class="well">
-		
-		Slide: {{slide}}
-		<br/>
-		<div class="well" ng-show="slide == 1">
-			1<br/>
-			<button class="btn pull-right" ng-click="setSlide(2)">Next</button>
-			<div class="clearfix"></div>
-		</div>
-		<div class="well" ng-show="slide == 2">2<br/>
-			<button class="btn pull-left" ng-click="setSlide(1)">Back</button>
-			<button class="btn pull-right" ng-click="setSlide(3)">Next</button>
-			<div class="clearfix"></div>
-		</div>
-		<div class="well" ng-show="slide == 3">3<br/>
-			<button class="btn pull-left" ng-click="setSlide(2)">Back</button>
-			<div class="clearfix"></div>
-		</div>
-	</div -->
-
-	
+	</div>	
 
 </body>
 </html>
