@@ -148,6 +148,31 @@
 						</div>
 						<div ng-show="rentedtab=='borrowed'">
 							<h4>Games I borrowed</h4>
+							<div class="list-group">
+							<div ng-repeat="game in borrowedGames | filter: getQuery | orderBy : distance">
+								<a href="#" class="list-group-item" ng-click="requestGame()">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-4">
+											<img class="pull-right" ng-src="{{game.image}}" width="80" height="120" />
+										</div>
+										<div class="col-md-8 col-sm-8 col-xs-8">
+											<h5 class="list-group-item-heading">{{game.name}}</h5>
+											<div class="list-group-item-text">
+												<p class="text-muted text-justify">
+													{{game.distance}} miles | 2 days ago
+													<br>by {{game.owner}}
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star"></span>
+													<span class="glyphicon glyphicon-star-empty"></span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
 						</div>
 					</div>
 				</div>
